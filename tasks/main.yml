@@ -1,0 +1,16 @@
+---
+
+- name: Install packages required for odbc
+  yum: 
+    name: "{{ item }}"
+    state: installed
+  with_items: packages
+
+
+- name: Write configuration file
+  template: src={{ item }} dest=/etc/ owner=root group=root mode=0644
+  with_fileglob: 
+   - "../templates/*.*"
+
+
+
